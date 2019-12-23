@@ -257,3 +257,9 @@ add_subdirectory(test_embed)
 
 # Test CMake build using functions and targets from subdirectory or installed location
 add_subdirectory(test_cmake_build)
+
+find_package(Boost REQUIRED COMPONENTS python${PYTHON_VERSION_MAJOR})
+add_library(test_move_arg_bp SHARED test_move_arg_bp.cpp)
+target_include_directories(test_move_arg_bp PRIVATE ${PYTHON_INCLUDE_DIRS} ${Boost_INCLUDE_DIRS})
+target_link_libraries(test_move_arg_bp ${Boost_LIBRARIES} ${PYTHON_LIBRARIES})
+set_target_properties(test_move_arg_bp PROPERTIES LIBRARY_OUTPUT_DIRECTORY ${testdir} PREFIX "")
