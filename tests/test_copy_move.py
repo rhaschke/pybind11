@@ -82,7 +82,7 @@ def test_move_copy_class_loads():
     assert o.value == -1
     o = t(3)
     assert t.consume_move(o) == 3  # moves
-    assert o.value == -1
+    assert o.value == -1  # values becomes -1 after moving
     assert (c_mc.copy_constructions, c_mc.move_constructions) == (0, 2)
 
     c_mc = m.move_and_copy_cstats()["MoveOrCopyInt"]
