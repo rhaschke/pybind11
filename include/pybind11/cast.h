@@ -1571,7 +1571,8 @@ public:
     ~move_only_holder_caster() {
         if (!holder_helper<holder_type>::get(*holder_ptr)) {
             // if held object was actually moved, unregister it
-            clear_instance(reinterpret_cast<PyObject*>(v_h.inst));
+            // clear_instance(reinterpret_cast<PyObject*>(v_h.inst));
+            v_h.inst->owned = false;
             v_h.value_ptr() = nullptr; // mark value as moved
         }
     }
